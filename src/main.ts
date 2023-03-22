@@ -1,6 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
+import {router} from "@/router/router";
+import intersection from "@/directives/VIntersection";
+import focus from "@/directives/VFocus";
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App)
+
+app.directive('intersection', intersection)
+app.directive('focus', focus)
+
+app.use(router).mount('#app')
