@@ -3,6 +3,7 @@ import MainPage from '@/Pages/MainPage.vue'
 import PostsPage from '@/Pages/PostsPage.vue'
 import AboutPage from '@/Pages/AboutPage.vue'
 import PostPage from '@/Pages/PostPage.vue'
+import PostsPageWithStore from '@/Pages/PostsPageWithStore.vue'
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: '/post/:postId',
     component: PostPage
+  },
+  {
+    path: '/store',
+    component: PostsPageWithStore
   }
 ]
 

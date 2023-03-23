@@ -19,7 +19,7 @@ export default defineComponent({
     }
   },
   methods: {
-    changeOption(e) {
+    changeOption(e: {target: {value: string}}) {
       this.$emit('update:modelValue', e.target.value)
     }
   },

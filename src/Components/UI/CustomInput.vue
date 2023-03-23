@@ -10,7 +10,7 @@ export default defineComponent({
     modelValue: [String, Number]
   },
   methods: {
-    updateInput(event) {
+    updateInput(event: {currentTarget: {value: string}}) {
       this.$emit('update:modelValue', event.currentTarget.value)
     }
   }
