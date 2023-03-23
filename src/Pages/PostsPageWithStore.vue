@@ -1,11 +1,12 @@
 <template>
   <div>
-
     <h1>Страница с постами</h1>
-    <custom-input v-focus :model-value="searchQuery" @update:model-value="setSearchQuery" placeholder="Поиск....."></custom-input>
+    <custom-input v-focus :model-value="searchQuery" @update:model-value="setSearchQuery"
+                  placeholder="Поиск....."></custom-input>
     <div class="app_btns">
       <custom-button @click="showDialog">Создать пост</custom-button>
-      <custom-select :model-value="selectedSort" @update:model-value="setSelectedSort" :options="sortOptions"></custom-select>
+      <custom-select :model-value="selectedSort" @update:model-value="setSelectedSort"
+                     :options="sortOptions"></custom-select>
     </div>
     <custom-dialog v-model:show="dialogVisible">
       <post-form @create="createPost"/>
@@ -13,12 +14,6 @@
     <post-list v-if="!isPostLoaded" :posts="sortedAndSearchPosts" @remove="removePost"/>
     <div v-else>Идет загрузка</div>
     <div v-intersection="loadMorePosts"></div>
-
-    <!--<div class="page_wrapper">
-        <div v-for="pageNumber in totalPages" :key="pageNumber" @click="changePage(pageNumber)" class="page"
-             :class="{'current_page': pageNumber === page}">{{ pageNumber }}
-        </div>
-      </div>-->
   </div>
 </template>
 
