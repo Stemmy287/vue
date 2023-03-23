@@ -14,7 +14,8 @@
 
 <script lang="ts">
 import CustomButton from "@/Components/UI/CustomButton.vue";
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
+import {PostType} from "@/store/postsModule";
 
 export default defineComponent({
   components: {
@@ -23,7 +24,7 @@ export default defineComponent({
 
   props: {
     post: {
-      type: Object,
+      type: Object as PropType<PostType>,
       required: true
     }
   }

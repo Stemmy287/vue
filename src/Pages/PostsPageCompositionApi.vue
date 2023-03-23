@@ -22,8 +22,6 @@ import CustomDialog from "@/Components/UI/CustomDialog";
 import CustomButton from "@/Components/UI/CustomButton";
 import CustomSelect from "@/Components/UI/CustomSelect";
 import CustomInput from "@/Components/UI/CustomInput";
-import axios from "axios";
-import {ref} from "vue";
 import {usePosts} from "@/hooks/usePosts";
 import {useSortedPosts} from "@/hooks/useSortedPosts";
 import {useSortedAndSearchedPosts} from "@/hooks/useSortedAndSearchedPosts";
@@ -41,7 +39,7 @@ export default {
       ]
     }
   },
-  setup(props) {
+  setup() {
 
     const {posts, isPostLoaded, totalPages} = usePosts(10)
     const {sortedPosts, selectedSort} = useSortedPosts(posts)

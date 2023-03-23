@@ -1,6 +1,7 @@
 import {computed, Ref, ref} from "vue";
+import {PostType} from "@/store/postsModule";
 
-export const useSortedAndSearchedPosts = (sortedPosts: Ref<any[]>) => {
+export const useSortedAndSearchedPosts = (sortedPosts: Ref<PostType[]>) => {
   const searchQuery = ref('')
 
   const sortedAndSearchedPosts = computed(() => {

@@ -13,13 +13,14 @@
 <script lang="ts">
 
 import PostItem from "@/Components/PostItem.vue";
-import {defineComponent} from "vue";
+import {defineComponent, PropType} from "vue";
+import {PostType} from "@/store/postsModule";
 
 export default defineComponent({
   components: {PostItem},
   props: {
     posts: {
-      type: Array,
+      type: Array as PropType<PostType[]>,
       required: true
     }
   }

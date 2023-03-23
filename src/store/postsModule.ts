@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const postsModule = {
-  state: () => ({
+  state: (): PostsStateType => ({
     posts: [],
     isPostLoaded: false,
     selectedSort: '',
@@ -15,30 +15,30 @@ export const postsModule = {
     ]
   }),
   getters: {
-    sortedPosts(state: any) {
-      return [...state.posts].sort((a, b) => a[state.selectedSort]?.localeCompare(b[state.selectedSort]))
+    sortedPosts(state: PostsStateType) {
+      return [...state.posts].sort((a, b) => a[state.selectedSort as keyof typeof a]?.localeCompare(b[state.selectedSort as keyof typeof b]))
     },
-    sortedAndSearchPosts(state: any, getters: {sortedPosts: any[], sortedAndSearchPosts: any[]}) {
+    sortedAndSearchPosts(state: PostsStateType, getters: {sortedPosts: PostType[], sortedAndSearchPosts: PostType[]}) {
       return getters.sortedPosts.filter(ps => ps.title.toLowerCase().includes(state.searchQuery.toLowerCase()))
     }
   },
   mutations: {
-    setPosts(state: any, posts: any) {
+    setPosts(state: PostsStateType, posts: PostType[]) {
       state.posts = posts
     },
-    setIsPostLoaded(state: any, isPostLoaded: boolean) {
+    setIsPostLoaded(state: PostsStateType, isPostLoaded: boolean) {
       state.isPostLoaded = isPostLoaded
     },
-    setSelectedSort(state: any, selectedSort: string) {
+    setSelectedSort(state: PostsStateType, selectedSort: string) {
       state.selectedSort= selectedSort
     },
-    setSearchQuery(state: any, searchQuery: string) {
+    setSearchQuery(state: PostsStateType, searchQuery: string) {
       state.searchQuery = searchQuery
     },
-    setPage(state: any, page: number) {
+    setPage(state: PostsStateType, page: number) {
       state.page = page
     },
-    setTotalPages(state: any, totalPages: number) {
+    setTotalPages(state: PostsStateType, totalPages: number) {
       state.totalPages = totalPages
     }
   },
@@ -77,4 +77,27 @@ export const postsModule = {
     }
   },
   namespaced: true
+}
+
+//types
+export type PostsStateType = {
+  posts: PostType[],
+  isPostLoaded: boolean
+  selectedSort: string
+  searchQuery: string
+  page: number
+  limit: number,
+  totalPages: number
+  sortOptions: SortOptionType[]
+}
+
+export type PostType = {
+  id: string
+  title: string
+  body: string
+}
+
+export type SortOptionType = {
+  value: string
+  name: string
 }
