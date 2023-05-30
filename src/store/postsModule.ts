@@ -18,7 +18,7 @@ export const postsModule = {
     sortedPosts(state: PostsStateType) {
       return [...state.posts].sort((a, b) => a[state.selectedSort as keyof typeof a]?.localeCompare(b[state.selectedSort as keyof typeof b]))
     },
-    sortedAndSearchPosts(state: PostsStateType, getters: {sortedPosts: PostType[], sortedAndSearchPosts: PostType[]}) {
+    sortedAndSearchPosts(state: PostsStateType, getters: { sortedPosts: PostType[], sortedAndSearchPosts: PostType[] }) {
       return getters.sortedPosts.filter(ps => ps.title.toLowerCase().includes(state.searchQuery.toLowerCase()))
     }
   },
@@ -30,7 +30,7 @@ export const postsModule = {
       state.isPostLoaded = isPostLoaded
     },
     setSelectedSort(state: PostsStateType, selectedSort: string) {
-      state.selectedSort= selectedSort
+      state.selectedSort = selectedSort
     },
     setSearchQuery(state: PostsStateType, searchQuery: string) {
       state.searchQuery = searchQuery
@@ -44,6 +44,7 @@ export const postsModule = {
   },
   actions: {
     async fetchPosts({state, commit}: any) {
+
       commit('setIsPostLoaded', true)
       try {
         const res = await axios.get('https://jsonplaceholder.typicode.com/posts', {
